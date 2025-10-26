@@ -4,6 +4,8 @@ from analyzer.api import router as analyzer_router
 from scorer.api import router as scorer_router
 from generator import api as generator_module
 from competitor.api import router as competitor_router
+from schedule.api import router as schedule_router
+
 
 # ✅ NEW: scheduler + monitor utilities
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -16,6 +18,8 @@ app.include_router(analyzer_router, prefix="/api/analyze", tags=["analyzer"])
 app.include_router(scorer_router, prefix="/api/score", tags=["scorer"])
 app.mount("/api/generate", generator_module.app)
 app.include_router(competitor_router, prefix="/competitor", tags=["competitor"])
+app.include_router(schedule_router, prefix="/schedule", tags=["schedule"])
+
 
 # ---- Monitoring scheduler ----
 scheduler = BackgroundScheduler(timezone="UTC")
